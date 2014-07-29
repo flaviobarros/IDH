@@ -36,14 +36,13 @@ idh <- arrange(df = idh, desc(Change))
 ## O Brasil foi 22º País com maior variação do IDH. Vamos fazer um gráfico com IDH dos 5 primeiros mais o Brasil
 ## Preparação dos dados
 idh_top <- idh[c(1:5, which(idh$Pais == 'Brazil')),]
-paises <- idh_top$Pais
 idh_top <- idh_top[,-11]
-idh_top <- as.data.frame(t(idh_top))
-colnames(idh_top) <- paises
+idh_top <- melt(idh_top, id.vars = 'Pais')
+colnames(idh_top) <- c('Pais', 'Ano', 'IDH')
 
 ## Gráfico
-ggplot(data=idh_top, aes(x=rownames(idh_top))) +
-  geom_point(aes(y = idh_top[,1:6], col = colnames(idh_top)))
+ggplot(data=idh_top, title='teste',aes(x = Ano, y = IDH, group = Pais, color = Pais)) +
+  geom_point() + geom_line() + ggtitle('IDH vs Anos')
 
   
   
