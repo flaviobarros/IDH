@@ -44,7 +44,11 @@ colnames(idh_top) <- c('Pais', 'Ano', 'IDH')
 ggplot(data=idh_top, title='teste',aes(x = Ano, y = IDH, group = Pais, color = Pais)) +
   geom_point() + geom_line() + ggtitle('IDH vs Anos')
 
-  
+## Salvando em png
+png('idh.png')
+ggplot(data=idh_top, title='teste',aes(x = Ano, y = IDH, group = Pais, color = Pais)) +
+  geom_point() + geom_line() + ggtitle('IDH vs Anos')
+dev.off()
   
   
 
